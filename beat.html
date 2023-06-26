@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<!--
+    Beat Frequency Physics Simulation
+    Originally created for Physics courses at Tacoma Community College
+    Author: David Anderson
+    Use and distribute freely
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Beat Frequency Simulation</title>
+</head>
+<body>
+
+<label for="frequencyA">Choose a first frequency:</label>
+
+<select name="Frequency A" id="frequencyA" onchange="chooseSrc()">
+    <option value="500">500</option>
+    <option value="501">501</option>
+    <option value="502">502</option>
+    <option value="503">503</option>
+    <option value="504">504</option>
+</select>
+
+<br/>
+
+<label for="frequencyB">Choose a second frequency:</label>
+
+<select name="Frequency B" id="frequencyB" onchange="chooseSrc()">
+    <option value="500">500</option>
+    <option value="501">501</option>
+    <option value="502">502</option>
+    <option value="503">503</option>
+    <option value="504">504</option>
+</select>
+
+<br/>
+
+<audio controls id="beat">
+    <source id="beatFile" src="">
+    Error: browser does not support audio
+</audio>
+
+<script type="application/javascript">
+    let frequencyA = document.getElementById("frequencyA");
+    let frequencyB = document.getElementById("frequencyB");
+    let audio = document.getElementById("beat");
+    let source = document.getElementById("beatFile");
+
+    function chooseSrc() {
+        let hzA = parseInt(frequencyA.value);
+        let hzB = parseInt(frequencyB.value);
+
+        switch(hzA | hzB){
+            case 500 | 501 :
+                source.src = "audio/500-501.mp3";
+                break;
+            case 500 | 502 :
+                source.src = "audio/500-502.mp3";
+                break;
+            case 500 | 503 :
+                source.src = "audio/500-503.mp3";
+                break;
+            case 500 | 504 :
+                source.src = "audio/500-504.mp3";
+                break;
+            case 501 | 502 :
+                source.src = "audio/501-502.mp3";
+                break;
+            case 501 | 503 :
+                source.src = "audio/501-503.mp3";
+                break;
+            case 501 | 504 :
+                source.src = "audio/501-504.mp3";
+                break;
+            case 502 | 503 :
+                source.src = "audio/502-503.mp3";
+                break;
+            case 502 | 504 :
+                source.src = "audio/502-504.mp3";
+                break;
+            case 503 | 504 :
+                source.src = "audio/503-504.mp3"
+        }
+        audio.load();
+    }
+
+</script>
+</body>
+</html>
