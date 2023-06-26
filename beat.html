@@ -51,36 +51,13 @@
         let hzA = parseInt(frequencyA.value);
         let hzB = parseInt(frequencyB.value);
 
-        if(hzA === 500 && hzB === 501 || hzA === 501 && hzB === 500){
-            source.src = "/audio/500-501.mp3";
+        if(hzA > hzB) {
+            let temp = hzA;
+            hzA = hzB;
+            hzB = temp;
         }
-        else if(hzA === 500 && hzB === 502 || hzA === 502 && hzB === 500){
-            source.src = "/audio/500-502.mp3";
-        }
-        else if(hzA === 500 && hzB === 503 || hzA === 503 && hzB === 500){
-            source.src = "/audio/500-503.mp3";
-        }
-        else if(hzA === 500 && hzB === 504 || hzA === 504 && hzB === 500){
-            source.src = "/audio/500-504.mp3";
-        }
-        else if(hzA === 501 && hzB === 502 || hzA === 502 && hzB === 501){
-            source.src = "/audio/501-502.mp3";
-        }
-        else if(hzA === 501 && hzB === 503 || hzA === 503 && hzB === 501){
-            source.src = "/audio/501-503.mp3";
-        }
-        else if(hzA === 501 && hzB === 504 || hzA === 504 && hzB === 501){
-            source.src = "/audio/501-504.mp3";
-        }
-        else if(hzA === 502 && hzB === 503 || hzA === 503 && hzB === 502){
-            source.src = "/audio/502-503.mp3";
-        }
-        else if(hzA === 502 && hzB === 504 || hzA === 504 && hzB === 502){
-            source.src = "/audio/502-504.mp3";
-        }
-        else if(hzA === 503 && hzB === 504 || hzA === 504 && hzB === 503){
-            source.src = "/audio/503-504.mp3";
-        }
+        source.src = "/audio/" + hzA + "-" + hzB + ".mp3";
+
         console.log(source.src);
         audio.load();
     }
