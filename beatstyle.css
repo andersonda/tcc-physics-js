@@ -1,0 +1,38 @@
+/*
+    Beat Frequency Physics Simulation
+    Originally created for physics courses at Tacoma Community College
+    Author: David Anderson
+    Use and distribute freely
+*/
+:root{
+    --tcc-blue: #003E7E;
+    --tcc-gold: #FFC90A;
+    --font-scale: 32px;
+}
+
+select{
+    font-size: var(--font-scale);
+}
+
+.frequency-div{
+    width: 900px;
+    columns: 3;
+    font-size: var(--font-scale);
+    background: var(--tcc-gold);
+    margin:auto;
+    padding: 20px;
+    text-align: center;
+    border-color: var(--tcc-blue);
+    border-style: double;
+    border-width: thick;
+    align-items: center;
+}
+
+
+.speaker-image{
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 64px;
+    padding-top: 16px;
+    width:50%;
+}

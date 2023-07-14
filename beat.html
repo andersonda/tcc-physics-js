@@ -1,69 +1,90 @@
 <!DOCTYPE html>
 <!--
     Beat Frequency Physics Simulation
-    Originally created for Physics courses at Tacoma Community College
+    Originally created for physics courses at Tacoma Community College
     Author: David Anderson
     Use and distribute freely
 -->
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Beat Frequency Simulation</title>
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Beat Frequency Simulation</title>
+        <link rel="stylesheet" href="beatstyle.css">
+    </head>
 
-<label for="frequencyA">Choose a first frequency:</label>
+    <body>
 
-<select name="Frequency A" id="frequencyA" onchange="chooseSrc()"></select>
+        <div class="frequency-div">
 
-<br/>
+            <div>
+                <label for="frequencyA">Frequency 1:</label>
+                <select name="Frequency A" id="frequencyA" onchange="chooseSrc()"></select>
+            </div>
 
-<label for="frequencyB">Choose a second frequency:</label>
+            <div>
+                <audio controls controlsList="nodownload" id="beat">
+                    <source id="beatFile" src="">
+                    Error: browser does not support audio
+                </audio>
+                <br>
+                <input type="image" src="images/speaker.png" class="speaker-image"  alt="Speaker" onclick="playAudio()">
+            </div>
 
-<select name="Frequency B" id="frequencyB" onchange="chooseSrc()"></select>
+            <div>
+                <label for="frequencyB">Frequency 2:</label>
+                <select name="Frequency B" id="frequencyB" onchange="chooseSrc()" class="frequency2-select"></select>
+            </div>
+        </div>
 
-<br/>
 
-<audio controls controlsList="nodownload" id="beat">
-    <source id="beatFile" src="">
-    Error: browser does not support audio
-</audio>
+        <script type="application/javascript">
+            let frequencyA = document.getElementById("frequencyA");
+            let frequencyB = document.getElementById("frequencyB");
+            let audio = document.getElementById("beat");
+            let source = document.getElementById("beatFile");
 
-<script type="application/javascript">
-    let frequencyA = document.getElementById("frequencyA");
-    let frequencyB = document.getElementById("frequencyB");
-    let audio = document.getElementById("beat");
-    let source = document.getElementById("beatFile");
+            let frequencies = {"500": 500, "501": 501, "502": 502, "503": 503, "504": 504,
+                "A": 499, "B": 501.5, "C": 506, "D": 509};
 
-    let frequencies = {"500": 500, "501": 501, "502": 502, "503": 503, "504": 504,
-        "A": 499, "B": 501.5, "C": 506, "D": 509};
+            function loadFrequencies(select){
+                for(let frequency in frequencies){
+                    let option = document.createElement("option");
+                    let optionText = frequency;
+                    if(!isNaN(+frequency)){
+                        optionText = optionText + " hz";
+                    }
+                    option.textContent = optionText;
+                    option.value = frequencies[frequency];
+                    select.appendChild(option);
+                }
+            }
 
-    function loadFrequencies(select){
-        for(let frequency in frequencies){
-            let option = document.createElement("option");
-            option.textContent = frequency;
-            option.value = frequencies[frequency];
-            select.appendChild(option);
-        }
-    }
+            loadFrequencies(frequencyA);
+            loadFrequencies(frequencyB);
 
-    loadFrequencies(frequencyA);
-    loadFrequencies(frequencyB);
+            function chooseSrc() {
+                let hzA = parseInt(frequencyA.value);
+                let hzB = parseInt(frequencyB.value);
 
-    function chooseSrc() {
-        let hzA = parseInt(frequencyA.value);
-        let hzB = parseInt(frequencyB.value);
+                if(hzA > hzB) {
+                    let temp = hzA;
+                    hzA = hzB;
+                    hzB = temp;
+                }
+                source.src = "audio/" + hzA + "-" + hzB + ".mp3";
 
-        if(hzA > hzB) {
-            let temp = hzA;
-            hzA = hzB;
-            hzB = temp;
-        }
-        source.src = "audio/" + hzA + "-" + hzB + ".mp3";
+                audio.load();
+            }
 
-        audio.load();
-    }
+            function playAudio(){
+                if(audio.paused){
+                    audio.play();
+                }
+                else{
+                    audio.pause();
+                }
+            }
 
-</script>
-</body>
+        </script>
+    </body>
 </html>
