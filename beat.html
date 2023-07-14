@@ -36,6 +36,15 @@
             </div>
         </div>
 
+        <div class="instructions-div">
+            <h3>Instructions for running the simulation:</h3>
+            <ol>
+                <li>Select a first frequency from the Frequency 1 options list.</li>
+                <li>Select a second frequency from the Frequency 2 options list.</li>
+                <li>Click the play button or the speaker icon to start audio playback.</li>
+            </ol>
+        </div>
+
 
         <script type="application/javascript">
             let frequencyA = document.getElementById("frequencyA");
@@ -73,6 +82,8 @@
                 }
                 source.src = "audio/" + hzA + "-" + hzB + ".mp3";
 
+                console.log(source.src);
+
                 audio.load();
             }
 
@@ -84,7 +95,6 @@
                     audio.pause();
                 }
             }
-
         </script>
     </body>
 </html>

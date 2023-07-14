@@ -12,6 +12,7 @@
 
 select{
     font-size: var(--font-scale);
+    border-radius: 8px;
 }
 
 .frequency-div{
@@ -28,6 +29,13 @@ select{
     align-items: center;
 }
 
+.instructions-div{
+    width:900px;
+    font-size: var(--font-scale);
+    margin:auto;
+    padding:20px;
+    color: var(--tcc-blue);
+}
 
 .speaker-image{
     margin-left: auto;
