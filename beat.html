@@ -56,8 +56,11 @@
             let frequencies = {"500": 500, "501": 501, "502": 502, "503": 503, "504": 504,
                 "A": 499, "B": 501.5, "C": 506, "D": 509};
 
-            function loadFrequencies(select){
+            function loadFrequencies(select, skip = 0){
                 for(let frequency in frequencies){
+                    if(frequencies[frequency] === skip){
+                        continue;
+                    }
                     let option = document.createElement("option");
                     let optionText = frequency;
                     if(!isNaN(+frequency)){
@@ -73,18 +76,29 @@
             loadFrequencies(frequencyB);
 
             function chooseSrc() {
-                let hzA = parseInt(frequencyA.value);
-                let hzB = parseInt(frequencyB.value);
+                let hzA = parseFloat(frequencyA.value);
+                let hzB = parseFloat(frequencyB.value);
 
                 if(hzA > hzB) {
                     let temp = hzA;
                     hzA = hzB;
                     hzB = temp;
                 }
-                source.src = "audio/" + hzA + "-" + hzB + ".mp3";
+
+                // remove decimal point from a floating point hz value to avoid illegal dot in filename
+                function removeDecimal(num){
+                    if(num % 1 !== 0){
+                        let decimal = num % 1;
+                        return "" + Math.floor(num) + Math.floor(decimal * 10);
+                    }
+                    else{
+                        return "" + num;
+                    }
+                }
+
+                source.src = "audio/" + removeDecimal(hzA) + "-" + removeDecimal(hzB) + ".mp3";
 
                 console.log(source.src);
-
                 audio.load();
             }
 
