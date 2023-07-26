@@ -13,6 +13,7 @@
 select{
     font-size: var(--font-scale);
     border-radius: 8px;
+    margin: 16px;
 }
 
 .frequency-div{
