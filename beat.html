@@ -55,20 +55,16 @@
             let audio = document.getElementById("beat");
             let source = document.getElementById("beatFile");
 
-            let frequencies = null;
-            if(config["use-custom-frequencies"]){
-                frequencies = config["custom-frequencies"];
-            }
-            else{
-                frequencies = config["default-frequencies"];
-            }
+            function loadFrequencies(select){
+                let frequencies = null;
+                if(config["use-custom-frequencies"]){
+                    frequencies = config["custom-frequencies"];
+                }
+                else{
+                    frequencies = config["default-frequencies"];
+                }
 
-
-            function loadFrequencies(select, skip = 0){
                 for(let frequency in frequencies){
-                    if(frequencies[frequency] === skip){
-                        continue;
-                    }
                     let option = document.createElement("option");
                     let optionText = frequency;
                     if(!isNaN(+frequency)){
