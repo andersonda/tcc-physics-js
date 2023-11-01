@@ -39,7 +39,7 @@
         </div>
 
         <div class="instructions-div">
-            <h3>Instructions for running the simulation:</h3>
+            <h3>Instructions for running the simulation:</h3>S
             <ol>
                 <li>Select a first frequency from the Frequency 1 options list.</li>
                 <li>Select a second frequency from the Frequency 2 options list.</li>
@@ -54,6 +54,9 @@
             let frequencyB = document.getElementById("frequencyB");
             let audio = document.getElementById("beat");
             let source = document.getElementById("beatFile");
+
+            // set the audio to 25% volume initially to avoid hearing loss
+            audio.volume = 0.25;
 
             function loadFrequencies(select){
                 let frequencies = null;
